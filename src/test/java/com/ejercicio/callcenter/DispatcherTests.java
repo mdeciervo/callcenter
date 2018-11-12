@@ -62,7 +62,7 @@ public class DispatcherTests {
     }
     
     @Test
-    public void dispatchCall_Con10LlamadasYCon3EmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
+    public void dispatchCall_Con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
         for (long i = 1; i <= 10; i++) {
             Llamada llamada = new Llamada(i);
