@@ -1,3 +1,3 @@
 # callcenter
 Ejercicio callcenter almundo
-![Alt text](doc/Callcenter.pnt?raw=true "Title")
+![Alt text](callcenter/doc/Callcenter.pnt?raw=true)
