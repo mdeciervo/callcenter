@@ -20,6 +20,8 @@ public class DispatcherTests {
 
     private ExecutorService executorService;
     private Dispatcher dispatcher;
+    
+     private static final int MAX_CANTIDAD_LLAMADAS = 10;
 
     @Before
     public void setUp() {
@@ -29,7 +31,7 @@ public class DispatcherTests {
         empleados.add(new Empleado("Pedro - Director", Tipo.DIRECTOR));
         empleados.add(new Empleado("Octavio - Operador", Tipo.OPERADOR));
         executorService = Executors.newCachedThreadPool();
-        dispatcher = new Dispatcher(executorService, empleados, new ArrayBlockingQueue(10));
+        dispatcher = new Dispatcher(executorService, empleados, new ArrayBlockingQueue(MAX_CANTIDAD_LLAMADAS));
     }
 
     @Test
@@ -61,6 +63,12 @@ public class DispatcherTests {
         assertThat(llamada2.getEmpleado()).isNotEqualTo(llamada3.getEmpleado());
     }
 
+//  * Dar alguna solución sobre qué pasa con una llamada cuando no hay ningún empleado libre.
+//  - La solucion es que al utilizar una Cola de tipo PriorityBlockingQueue, y ademas 
+//    usar los metodos take y put que son bloqueantes, cuando la cola de empleados esta vacia (es decir,
+//    no hay ningun empleado libre), el hilo espera a que se agregue un nuevo empleado para continuar.
+
+     
     @Test
     public void dispatchCall_Con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
@@ -75,6 +83,11 @@ public class DispatcherTests {
         assertThat(llamadas).extracting("empleado")
                 .hasOnlyElementsOfType(Empleado.class);
     }
+    
+//  * Dar alguna solución sobre qué pasa con una llamada cuando entran más de 10 llamadas concurrentes.
+//  - La solucion es que al utilizar una Cola de tipo ArrayBlockingQueue de un tamaño fijo de 10 para 
+//    las llamadas, al insertar una llamada con el metodo put, se asegura de bloquear al hilo y esperar 
+//    a que se libere un lugar para insertarlo correctamente.
 
     @Test
     public void dispatchCall_Con11LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
