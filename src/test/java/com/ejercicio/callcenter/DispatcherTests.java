@@ -29,7 +29,7 @@ public class DispatcherTests {
         empleados.add(new Empleado("Pedro - Director", Tipo.DIRECTOR));
         empleados.add(new Empleado("Octavio - Operador", Tipo.OPERADOR));
         executorService = Executors.newCachedThreadPool();
-        dispatcher = new Dispatcher(executorService, empleados,new ArrayBlockingQueue(10));
+        dispatcher = new Dispatcher(executorService, empleados, new ArrayBlockingQueue(10));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class DispatcherTests {
         assertThat(llamada.getEmpleado()).isNotEqualTo(llamada3.getEmpleado());
         assertThat(llamada2.getEmpleado()).isNotEqualTo(llamada3.getEmpleado());
     }
-    
+
     @Test
     public void dispatchCall_Con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
@@ -75,7 +75,7 @@ public class DispatcherTests {
         assertThat(llamadas).extracting("empleado")
                 .hasOnlyElementsOfType(Empleado.class);
     }
-    
+
     @Test
     public void dispatchCall_Con11LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
@@ -87,9 +87,8 @@ public class DispatcherTests {
         executorService.shutdown();
         executorService.awaitTermination(40, TimeUnit.SECONDS);
 
-        llamadas.stream().forEachOrdered((llamada)->System.out.println("Llamada "+llamada.getId()+" empleado "+llamada.getEmpleado()));
         assertThat(llamadas).extracting("empleado")
                 .hasOnlyElementsOfType(Empleado.class);
     }
-    
+
 }
