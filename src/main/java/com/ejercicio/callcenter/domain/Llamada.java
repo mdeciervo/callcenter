@@ -18,10 +18,10 @@ public class Llamada {
 
     public Llamada(Long id) {
         this.id = id;
-        Random r = new Random();
+        Random random = new Random();
         int low = MIN_DURATION;
         int high = MAX_DURATION;
-        int result = r.nextInt(high - low) + low;
+        int result = random.nextInt(high - low) + low;
         this.duracion = result;
     }
 

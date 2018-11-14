@@ -10,16 +10,16 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Empleado implements Comparable<Empleado>{
-    
+public class Empleado implements Comparable<Empleado> {
+
     private String nombre;
     private Tipo tipo;
 
     @Override
     public int compareTo(Empleado otroEmpleado) {
-        if (this.tipo.prioridad() < otroEmpleado.tipo.prioridad()) {
+        if (this.tipo.ordinal() < otroEmpleado.tipo.ordinal()) {
             return -1;
-        } else if (this.tipo.prioridad() > otroEmpleado.tipo.prioridad()) {
+        } else if (this.tipo.ordinal() > otroEmpleado.tipo.ordinal()) {
             return 1;
         }
         return 0;

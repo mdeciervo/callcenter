@@ -16,12 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DispatcherTests {
+public class DispatcherTest {
 
     private ExecutorService executorService;
     private Dispatcher dispatcher;
-    
-     private static final int MAX_CANTIDAD_LLAMADAS = 10;
+
+    private static final int MAX_CANTIDAD_LLAMADAS = 10;
 
     @Before
     public void setUp() {
@@ -39,6 +39,9 @@ public class DispatcherTests {
         Llamada llamada = new Llamada(1L);
 
         dispatcher.dispatchCall(llamada);
+        
+        executorService.shutdown();
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
 
         assertThat(Tipo.OPERADOR).isEqualTo(llamada.getEmpleado().getTipo());
     }
@@ -64,11 +67,9 @@ public class DispatcherTests {
     }
 
 //  * Dar alguna solución sobre qué pasa con una llamada cuando no hay ningún empleado libre.
-//  - La solucion es que al utilizar una Cola de tipo PriorityBlockingQueue, y ademas 
+//  - La solucion es que al utilizar una Cola de tipo PriorityBlockingQueue para los empleados, y ademas 
 //    usar los metodos take y put que son bloqueantes, cuando la cola de empleados esta vacia (es decir,
-//    no hay ningun empleado libre), el hilo espera a que se agregue un nuevo empleado para continuar.
-
-     
+//    no hay ningun empleado libre), el hilo espera a que se agregue un nuevo empleado para continuar su ejecución.
     @Test
     public void dispatchCall_Con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
@@ -83,12 +84,11 @@ public class DispatcherTests {
         assertThat(llamadas).extracting("empleado")
                 .hasOnlyElementsOfType(Empleado.class);
     }
-    
+
 //  * Dar alguna solución sobre qué pasa con una llamada cuando entran más de 10 llamadas concurrentes.
 //  - La solucion es que al utilizar una Cola de tipo ArrayBlockingQueue de un tamaño fijo de 10 para 
-//    las llamadas, al insertar una llamada con el metodo put, se asegura de bloquear al hilo y esperar 
+//    las llamadas, al intentar insertar una llamada con el metodo put, se asegura de bloquear al hilo y esperar 
 //    a que se libere un lugar para insertarlo correctamente.
-
     @Test
     public void dispatchCall_Con11LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();

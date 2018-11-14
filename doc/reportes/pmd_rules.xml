@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+
+<ruleset name="Pnt rulesets" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <description>Reglas utilizadas por las aplicaciones de PNT.</description>
+
+    <rule ref="rulesets/java/basic.xml"/>
+
+    <rule ref="rulesets/java/basic.xml/EmptyCatchBlock" message="Must handle exceptions">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/unusedcode.xml"/>
+
+    <rule ref="rulesets/java/braces.xml"/>
+
+    <rule ref="rulesets/java/imports.xml"/>
+
+    <!--<rule ref="rulesets/java/design.xml/UseSingleton" />-->
+    <rule ref="rulesets/java/design.xml/SimplifyBooleanReturns"/>
+    <rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions"/>
+    <rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault"/>
+    <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts"/>
+    <!--<rule ref="rulesets/java/design.xml/AvoidReassigningParameters" />-->
+    <rule ref="rulesets/java/design.xml/FinalFieldCouldBeStatic"/>
+    <rule ref="rulesets/java/design.xml/DefaultLabelNotLastInSwitchStmt"/>
+    <rule ref="rulesets/java/design.xml/EqualsNull"/>
+    <rule ref="rulesets/java/design.xml/ConfusingTernary"/>
+    <rule ref="rulesets/java/design.xml/InstantiationToGetClass"/>
+    <rule ref="rulesets/java/design.xml/AvoidSynchronizedAtMethodLevel"/>
+    <rule ref="rulesets/java/design.xml/MissingBreakInSwitch"/>
+    <rule ref="rulesets/java/design.xml/CompareObjectsWithEquals"/>
+    <rule ref="rulesets/java/design.xml/NonThreadSafeSingleton"/>
+    <rule ref="rulesets/java/design.xml/AvoidConstantsInterface"/>
+
+    <rule ref="rulesets/java/design.xml/PreserveStackTrace">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/design.xml/UseCollectionIsEmpty"/>
+    <rule ref="rulesets/java/design.xml/ReturnEmptyArrayRatherThanNull"/>
+
+    <!--<rule ref="rulesets/java/javabeans.xml/MissingSerialVersionUID" />-->
+
+    <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="skipAnnotations" value="true"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/strings.xml/StringInstantiation"/>
+    <rule ref="rulesets/java/strings.xml/StringToString"/>
+    <rule ref="rulesets/java/strings.xml/UnnecessaryCaseChange"/>
+    <rule ref="rulesets/java/strings.xml/UseStringBufferLength"/>
+    <rule ref="rulesets/java/strings.xml/InefficientEmptyStringCheck"/>
+    <rule ref="rulesets/java/strings.xml/UselessStringValueOf"/>
+    <rule ref="rulesets/java/strings.xml/UseEqualsToCompareStrings"/>
+    <rule ref="rulesets/java/strings.xml/AvoidStringBufferField"/>
+
+    <rule ref="rulesets/java/controversial.xml/UnnecessaryConstructor"/>
+    <rule ref="rulesets/java/controversial.xml/NullAssignment"/>
+    <rule ref="rulesets/java/controversial.xml/AssignmentInOperand"/>
+
+    <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+        <properties>
+            <property name="minimum" value="100"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/ExcessiveParameterList">
+        <properties>
+            <property name="minimum" value="7"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
+        <properties>
+            <property name="minimum" value="500"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
+        <properties>
+            <property name="reportLevel" value="10"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/ExcessivePublicCount">
+        <properties>
+            <property name="minimum" value="45"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="15"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/ShortVariable">
+        <properties>
+            <property name="xpath">
+                <value>
+                    //VariableDeclaratorId[(string-length(@Image) &lt; 3) and (not (@Image='id'))]
+                    [not(ancestor::ForInit)]
+                    [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+
+    <rule ref="rulesets/java/naming.xml/ShortMethodName">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/VariableNamingConventions">
+        <priority>1</priority>
+        <properties>
+            <property name="violationSuppressXPath" value="//VariableDeclaratorId[@Image='logger']"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/MethodNamingConventions">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/ClassNamingConventions">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/SuspiciousConstantFieldName">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/NoPackage">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/PackageCase">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/BooleanGetMethodName">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="rulesets/java/optimizations.xml/UseArrayListInsteadOfVector"/>
+    <rule ref="rulesets/java/optimizations.xml/UseStringBufferForStringAppends"/>
+    <rule ref="rulesets/java/optimizations.xml/UseArraysAsList"/>
+    <rule ref="rulesets/java/optimizations.xml/AvoidArrayLoops"/>
+    <rule ref="rulesets/java/optimizations.xml/AddEmptyString"/>
+
+    <!--<rule ref="rulesets/java/strictexception.xml/SignatureDeclareThrowsException" />-->
+    <rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes"/>
+    <rule ref="rulesets/java/strictexception.xml/AvoidRethrowingException"/>
+
+</ruleset>
