@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Dispatcher {
 
-    private ExecutorService executorService;
-    private BlockingQueue<Empleado> empleados;
-    private BlockingQueue<Llamada> llamadas;
+    private final ExecutorService executorService;
+    private final BlockingQueue<Empleado> empleados;
+    private final BlockingQueue<Llamada> llamadas;
 
     public void dispatchCall(Llamada llamada) throws InterruptedException {
         log.info("Se recibio la llamada " + llamada.getId());

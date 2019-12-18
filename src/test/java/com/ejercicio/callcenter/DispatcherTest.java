@@ -35,7 +35,7 @@ public class DispatcherTest {
     }
 
     @Test
-    public void dispatchCall_ConUnicaLlamadaYConEmpleadosDisponibles_AsignaLlamadaAOperador() throws InterruptedException {
+    public void dispatchCall_conUnicaLlamadaYConEmpleadosDisponibles_asignaLlamadaAOperador() throws InterruptedException {
         Llamada llamada = new Llamada(1L);
 
         dispatcher.dispatchCall(llamada);
@@ -47,7 +47,7 @@ public class DispatcherTest {
     }
 
     @Test
-    public void dispatchCall_Con2LlamadasYConEmpleadosDisponibles_AsignaLlamadaAOperadorYSupervisor() throws InterruptedException {
+    public void dispatchCall_con2LlamadasYConEmpleadosDisponibles_asignaLlamadaAOperadorYSupervisor() throws InterruptedException {
         Llamada llamada = new Llamada(1L);
         Llamada llamada2 = new Llamada(2L);
         Llamada llamada3 = new Llamada(3L);
@@ -71,7 +71,7 @@ public class DispatcherTest {
 //    usar los metodos take y put que son bloqueantes, cuando la cola de empleados esta vacia (es decir,
 //    no hay ningun empleado libre), el hilo espera a que se agregue un nuevo empleado para continuar su ejecución.
     @Test
-    public void dispatchCall_Con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
+    public void dispatchCall_con10LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
         for (long i = 1; i <= 10; i++) {
             Llamada llamada = new Llamada(i);
@@ -90,7 +90,7 @@ public class DispatcherTest {
 //    las llamadas, al intentar insertar una llamada con el metodo put, se asegura de bloquear al hilo y esperar 
 //    a que se libere un lugar para insertarlo correctamente.
     @Test
-    public void dispatchCall_Con11LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
+    public void dispatchCall_con11LlamadasYConEmpleadosDisponibles_modificaLlamadasConDiferentesEmpleados() throws InterruptedException {
         List<Llamada> llamadas = new ArrayList();
         for (long i = 1; i <= 11; i++) {
             Llamada llamada = new Llamada(i);

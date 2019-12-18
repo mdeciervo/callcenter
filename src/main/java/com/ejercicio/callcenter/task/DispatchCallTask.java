@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DispatchCallTask implements Runnable {
 
-    private BlockingQueue<Empleado> empleados;
-    private BlockingQueue<Llamada> llamadas;
+    private final BlockingQueue<Empleado> empleados;
+    private final BlockingQueue<Llamada> llamadas;
 
     public DispatchCallTask(BlockingQueue<Empleado> empleados, BlockingQueue<Llamada> llamadas) {
         this.empleados = empleados;
