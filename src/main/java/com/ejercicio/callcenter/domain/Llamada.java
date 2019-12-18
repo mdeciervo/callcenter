@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class Llamada {
 
-    private static final int DURACION_MINIMA = 5;
-    private static final int DURACION_MAXIMA = 10;
+    private static final int MAX_DURATION = 5;
+    private static final int MIN_DURATION = 10;
 
     private Long id;
     private int duracion;
@@ -18,7 +18,7 @@ public class Llamada {
     public Llamada(Long id) {
         this.id = id;
         Random random = new Random();
-        this.duracion = random.nextInt(DURACION_MAXIMA - DURACION_MINIMA) + DURACION_MINIMA;
+        this.duracion = random.nextInt(MIN_DURATION - MAX_DURATION) + MAX_DURATION;
     }
 
 }
