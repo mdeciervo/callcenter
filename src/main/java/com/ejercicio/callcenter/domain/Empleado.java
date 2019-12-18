@@ -17,9 +17,9 @@ public class Empleado implements Comparable<Empleado> {
 
     @Override
     public int compareTo(Empleado otroEmpleado) {
-        if (this.tipo.ordinal() < otroEmpleado.tipo.ordinal()) {
+        if (this.tipo.prioridad() < otroEmpleado.tipo.prioridad()) {
             return -1;
-        } else if (this.tipo.ordinal() > otroEmpleado.tipo.ordinal()) {
+        } else if (this.tipo.prioridad() > otroEmpleado.tipo.prioridad()) {
             return 1;
         }
         return 0;
